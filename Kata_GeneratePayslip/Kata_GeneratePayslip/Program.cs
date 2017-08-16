@@ -14,22 +14,31 @@ namespace Kata_GeneratePayslip
             string input = "David,Rudd,60050,9%,01 March – 31 March";
 
             string firstName, lastName, paymentPeriod, output;
-            int superRate, annualSalary;
+            double superRate, annualSalary;
 
             string[] inputData = input.Split(',');
             firstName = inputData[0];
             lastName = inputData[1];
-            annualSalary = Int32.Parse(inputData[2]);
-            superRate = inputData[3];
-            paymentPeriod = inputData[4];
+            annualSalary = double.Parse(inputData[2]);
+            superRate = double.Parse(inputData[3]);
+
 
             //pay period = per calendar month
+            paymentPeriod = inputData[4];
             //gross income = annual salary / 12 months
-            //income tax = based on the tax table provide below
+            double grossIncome = annualSalary / 12;
+            //income tax = based on the tax table provide below ( this will be a function)
+
             //net income = gross income - income tax
+            
             //super = gross income x super rate
+            double super = grossIncome * superRate;
 
 
+
+
+
+            string name = firstName + " " + lastName;
 
 
             //Output(name, pay period, gross income, income tax, net income, super)
@@ -37,6 +46,16 @@ namespace Kata_GeneratePayslip
             //Console.WriteLine(output);
 
             Console.ReadKey();
+        }
+
+        static void payslipGen(double annualSalary, int superRate)
+        {
+            
+        }
+
+        static string Output(string name, string payPeriod, double grossIncome, double incomeTax, double netIncome, double super)
+        {
+            return "hello world";
         }
     }
 }
