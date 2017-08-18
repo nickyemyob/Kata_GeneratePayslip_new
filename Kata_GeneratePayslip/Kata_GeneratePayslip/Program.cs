@@ -28,7 +28,7 @@ namespace Kata_GeneratePayslip
             //gross income = annual salary / 12 months
             double grossIncome = annualSalary / 12;
             //income tax = based on the tax table provide below ( this will be a function)
-
+            double incomeTax = IncomeTax(annualSalary);
             //net income = gross income - income tax
             
             //super = gross income x super rate
