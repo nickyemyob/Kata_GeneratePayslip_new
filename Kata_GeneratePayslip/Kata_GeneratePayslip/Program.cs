@@ -20,7 +20,8 @@ namespace Kata_GeneratePayslip
             firstName = inputData[0];
             lastName = inputData[1];
             annualSalary = double.Parse(inputData[2]);
-            //superRate = double.Parse(inputData[3]);
+            superRate = double.Parse(inputData[3].TrimEnd('%'));
+            superRate = superRate / 100;
 
 
             //pay period = per calendar month
@@ -30,18 +31,20 @@ namespace Kata_GeneratePayslip
             //income tax = based on the tax table provide below ( this will be a function)
             double incomeTax = IncomeTax(annualSalary);
             //net income = gross income - income tax
-            
+            double netIncome = grossIncome - incomeTax;
             //super = gross income x super rate
-            //double super = grossIncome * superRate;
-
+            double super = grossIncome * superRate;
+            
             string name = firstName + " " + lastName;
 
 
-            //Output(name, pay period, gross income, income tax, net income, super)
+            
             Console.WriteLine(input);
             //Console.WriteLine(output);
-            Console.WriteLine(IncomeTax(18202).ToString());
-
+            
+            //Console.WriteLine(IncomeTax(18202).ToString());
+            Console.WriteLine(Output(name, paymentPeriod, grossIncome, incomeTax, netIncome, super));
+            Console.WriteLine(superRate);
             Console.ReadKey();
         }
 
@@ -50,19 +53,19 @@ namespace Kata_GeneratePayslip
             double taxableIncome;
             if (18200 < annualSalary && annualSalary <= 37000)
             {
-                taxableIncome = (annualSalary - 18200) * 0.19;
+                taxableIncome = ((annualSalary - 18200) * 0.19) / 12;
             }
             else if (37000 < annualSalary && annualSalary <= 80000)
             {
-                taxableIncome = 3572 + (annualSalary - 37000) * 0.325;
+                taxableIncome = (3572 + (annualSalary - 37000) * 0.325) / 12;
             }
             else if(80000 < annualSalary && annualSalary <= 180000)
             {
-                taxableIncome = 17547 + (annualSalary - 80000) * 0.37;
+                taxableIncome = (17547 + (annualSalary - 80000) * 0.37) / 12;
             }
             else if(annualSalary > 180000)
             {
-                taxableIncome = 54547 + (annualSalary - 180000) * 0.45;
+                taxableIncome = (54547 + (annualSalary - 180000) * 0.45) / 12;
             }
             else
             {
@@ -75,7 +78,7 @@ namespace Kata_GeneratePayslip
 
         static string Output(string name, string payPeriod, double grossIncome, double incomeTax, double netIncome, double super)
         {
-            return "hello world";
+            return name + "," + payPeriod + "," + grossIncome + "," + incomeTax + "," + netIncome + "," + super;
         }
     }
 }
