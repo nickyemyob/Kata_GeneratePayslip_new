@@ -11,9 +11,10 @@ namespace Kata_GeneratePayslip
         static void Main(string[] args)
         {
             //Input format (first name, last name, annual salary, super rate (%), payment start date)
-            string input = "David,Rudd,60050,9%,01 March – 31 March";
+            //string input = "David,Rudd,60050,9%,01 March – 31 March";
+            string input = "Ryan,Chen,120000,10 %,01 March – 31 March";
 
-            string firstName, lastName, paymentPeriod, output;
+            string firstName, lastName, paymentPeriod;
             double superRate, annualSalary;
 
             string[] inputData = input.Split(',');
@@ -37,14 +38,8 @@ namespace Kata_GeneratePayslip
             
             string name = firstName + " " + lastName;
 
-
-            
             Console.WriteLine(input);
-            //Console.WriteLine(output);
-            
-            //Console.WriteLine(IncomeTax(18202).ToString());
             Console.WriteLine(Output(name, paymentPeriod, grossIncome, incomeTax, netIncome, super));
-            Console.WriteLine(superRate);
             Console.ReadKey();
         }
 
@@ -78,7 +73,7 @@ namespace Kata_GeneratePayslip
 
         static string Output(string name, string payPeriod, double grossIncome, double incomeTax, double netIncome, double super)
         {
-            return name + "," + payPeriod + "," + grossIncome + "," + incomeTax + "," + netIncome + "," + super;
+            return name + "," + payPeriod + "," + Math.Round(grossIncome) + "," + Math.Round(incomeTax) + "," + Math.Round(netIncome) + "," + Math.Round(super);
         }
     }
 }
